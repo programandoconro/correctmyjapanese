@@ -6,20 +6,28 @@ const Corrections = (props: { changes: Change[] }) => {
     <code className="text-8xl bg-gray-600">
       <h2 className="text-4xl">Corrections:</h2>
       <div className="flex">
-        {changes.map((change: Change) => {
+        {changes.map((change: Change, key) => {
           if (!change.added && !change.removed) {
-            return <p>{change.value}</p>;
+            return <p key={key}>{change.value}</p>;
           } else if (change.removed) {
-            return <del style={{ color: "red" }}>{change.value}</del>;
+            return (
+              <del key={key} style={{ color: "red" }}>
+                {change.value}
+              </del>
+            );
           }
         })}
       </div>
       <div className="flex">
-        {changes.map((change: Change) => {
+        {changes.map((change: Change, key) => {
           if (!change.added && !change.removed) {
-            return <p>{change.value}</p>;
+            return <p key={key}>{change.value}</p>;
           } else if (change.added) {
-            return <p style={{ color: "green" }}>{change.value}</p>;
+            return (
+              <p key={key} style={{ color: "green" }}>
+                {change.value}
+              </p>
+            );
           }
         })}
       </div>

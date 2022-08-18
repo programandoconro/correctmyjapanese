@@ -13,6 +13,11 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Correct my writting</title>
+        <meta
+          name="description"
+          content="A place to improve your writting skills in any language"
+        />
+        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className={styles.main}>
