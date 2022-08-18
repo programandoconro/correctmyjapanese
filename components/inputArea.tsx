@@ -19,7 +19,7 @@ const InputArea = (props: {
         {title === "manuscripts" ? "Student's input" : "Sensei's input"} :
       </h5>
       <textarea
-        className="bg-gray-200 text-black font-bold text-2xl min-h-[200px]"
+        className="bg-gray-200 text-black font-bold text-2xl min-h-[200px] px-4"
         value={input}
         onChange={handleInputChange}
       />
