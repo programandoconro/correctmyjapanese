@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Corrections from "../components/corrections";
 import findDifferences from "../components/findDifferences";
 import InputArea from "../components/inputArea";
@@ -9,6 +9,19 @@ import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
   const [studentInput, setStudentInput] = useState<string>("");
   const [teacherInput, setTeacherInput] = useState<string>("");
+  useEffect(() => {
+    const getPersistedData = async (route: "manuscripts" | "corrections") => {
+      const response = await fetch(`/api/${route}`, { method: "GET" });
+      const data = await response.json();
+      if (route === "manuscripts") {
+        setStudentInput(data.manuscripts);
+      } else if (route === "corrections") {
+        setTeacherInput(data.corrections);
+      }
+    };
+    getPersistedData("manuscripts");
+    getPersistedData("corrections");
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -27,12 +40,12 @@ const Home: NextPage = () => {
         </h1>
         <div className="grid gap-10 pt-10 w-screen xl:w-[1200px] px-10">
           <InputArea
-            title="Student: "
+            title="manuscripts"
             input={studentInput}
             setInput={setStudentInput}
           />
           <InputArea
-            title="Sensei: "
+            title="corrections"
             input={teacherInput}
             setInput={setTeacherInput}
           />

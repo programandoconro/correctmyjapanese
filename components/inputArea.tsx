@@ -4,8 +4,14 @@ const InputArea = (props: {
   setInput: (s: string) => void;
 }) => {
   const { title, input, setInput } = props;
-  const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleInputChange = async (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     setInput(event.target.value);
+    await fetch(`/api/${title}`, {
+      method: "POST",
+      body: event.target.value,
+    });
   };
   return (
     <>

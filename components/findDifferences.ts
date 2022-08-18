@@ -5,7 +5,10 @@ const findDifferences = (props: {
   teacherCorrection: string;
 }): Change[] => {
   const { learnerSentence, teacherCorrection } = props;
-  const changedWords = diffChars(learnerSentence, teacherCorrection);
+  const changedWords =
+    teacherCorrection && teacherCorrection.length
+      ? diffChars(learnerSentence, teacherCorrection)
+      : [];
 
   return changedWords;
 };
