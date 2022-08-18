@@ -15,7 +15,7 @@ const InputArea = (props: {
   };
   return (
     <>
-      <h5 className="text-xl">{title}</h5>
+      <h5 className="text-xl">{title?.toUpperCase()}:</h5>
       <textarea
         className="bg-gray-200 text-black font-bold text-2xl min-h-[200px]"
         value={input}
