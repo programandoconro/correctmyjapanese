@@ -10,17 +10,17 @@ const Home: NextPage = () => {
   const [studentInput, setStudentInput] = useState<string>("");
   const [teacherInput, setTeacherInput] = useState<string>("");
   useEffect(() => {
-    const getPersistedData = async (route: "manuscript" | "correction") => {
+    const getPersistedData = async (route: "manuscripts" | "corrections") => {
       const response = await fetch(`/api/${route}`, { method: "GET" });
       const data = await response.json();
-      if (route === "manuscript") {
-        setStudentInput(data.manuscript);
-      } else if (route === "correction") {
-        setTeacherInput(data.correction);
+      if (route === "manuscripts") {
+        setStudentInput(data.manuscripts);
+      } else if (route === "corrections") {
+        setTeacherInput(data.corrections);
       }
     };
-    getPersistedData("manuscript");
-    getPersistedData("correction");
+    getPersistedData("manuscripts");
+    getPersistedData("corrections");
   }, []);
   return (
     <div className={styles.container}>
@@ -40,12 +40,12 @@ const Home: NextPage = () => {
         </h1>
         <div className="grid gap-10 pt-10 w-screen xl:w-[1200px] px-10">
           <InputArea
-            title="manuscript"
+            title="manuscripts"
             input={studentInput}
             setInput={setStudentInput}
           />
           <InputArea
-            title="correction"
+            title="corrections"
             input={teacherInput}
             setInput={setTeacherInput}
           />
