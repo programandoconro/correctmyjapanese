@@ -1,3 +1,6 @@
+import manuscripts from "../pages/api/manuscripts";
+import CONSTANTS from "../utils/constants";
+
 const InputArea = (props: {
   title?: string;
   input: string;
@@ -13,15 +16,16 @@ const InputArea = (props: {
       body: event.target.value,
     });
   };
+  const name =
+    title === CONSTANTS.MANUSCRIPTS ? "Student's input" : "Sensei's input";
   return (
     <>
-      <h5 className="text-xl">
-        {title === "manuscripts" ? "Student's input" : "Sensei's input"} :
-      </h5>
+      <h5 className="text-xl">{name}</h5>
       <textarea
-        className="bg-gray-200 text-black font-bold text-2xl min-h-[200px] px-4"
+        className="bg-gray-300 text-black font-bold text-2xl min-h-[200px] px-4 max-w-[1000px]"
         value={input}
         onChange={handleInputChange}
+        placeholder={name}
       />
     </>
   );

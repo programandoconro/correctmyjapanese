@@ -5,6 +5,7 @@ import Corrections from "../components/corrections";
 import findDifferences from "../components/findDifferences";
 import InputArea from "../components/inputArea";
 import styles from "../styles/Home.module.css";
+import CONSTANTS from "../utils/constants";
 
 const Home: NextPage = () => {
   const [studentInput, setStudentInput] = useState<string>("");
@@ -13,14 +14,14 @@ const Home: NextPage = () => {
     const getPersistedData = async (route: "manuscripts" | "corrections") => {
       const response = await fetch(`/api/${route}`, { method: "GET" });
       const data = await response.json();
-      if (route === "manuscripts") {
+      if (route === CONSTANTS.MANUSCRIPTS) {
         setStudentInput(data.manuscripts);
-      } else if (route === "corrections") {
+      } else if (route === CONSTANTS.CORRECTIONS) {
         setTeacherInput(data.corrections);
       }
     };
-    getPersistedData("manuscripts");
-    getPersistedData("corrections");
+    getPersistedData(CONSTANTS.MANUSCRIPTS);
+    getPersistedData(CONSTANTS.CORRECTIONS);
   }, []);
   return (
     <div className={styles.container}>
@@ -40,12 +41,12 @@ const Home: NextPage = () => {
         </h1>
         <div className="grid gap-10 pt-10 w-screen xl:w-[1200px] px-10">
           <InputArea
-            title="manuscripts"
+            title={CONSTANTS.MANUSCRIPTS}
             input={studentInput}
             setInput={setStudentInput}
           />
           <InputArea
-            title="corrections"
+            title={CONSTANTS.CORRECTIONS}
             input={teacherInput}
             setInput={setTeacherInput}
           />
