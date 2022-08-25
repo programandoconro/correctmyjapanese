@@ -1,4 +1,3 @@
-import manuscripts from "../pages/api/manuscripts";
 import CONSTANTS from "../utils/constants";
 
 const InputArea = (props: {
