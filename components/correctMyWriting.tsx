@@ -4,7 +4,7 @@ import CONSTANTS from "../utils/constants";
 import Corrections from "./corrections";
 import findDifferences from "./findDifferences";
 
-const CorrectMyWritting = () => {
+const CorrectMyWriting = () => {
   const [studentInput, setStudentInput] = useState<string>("");
   const [teacherInput, setTeacherInput] = useState<string>("");
   useEffect(() => {
@@ -41,4 +41,4 @@ const CorrectMyWritting = () => {
     </div>
   );
 };
-export default CorrectMyWritting;
+export default CorrectMyWriting;
