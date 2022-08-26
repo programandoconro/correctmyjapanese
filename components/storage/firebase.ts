@@ -29,39 +29,21 @@ const provider = new GoogleAuthProvider();
 const auth = getAuth();
 auth.useDeviceLanguage();
 
-export const googleSignIn = () => {
-  signInWithRedirect(auth, provider);
-};
-
-export const handleRedirectResult = (
-  setToken: (t: String) => void,
+export const googleSignIn = (
   setUser: (u: UserCredential) => void,
   setSpinner: (s: boolean | null) => void
 ) => {
   setSpinner(true);
-  getRedirectResult(auth)
+  signInWithPopup(auth, provider)
     .then((result) => {
-      if (result) {
-        console.log(true);
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        token && setToken(token);
-        setUser(result);
-      }
-
-      // The signed-in user info.
+      setUser(result);
     })
     .catch((error) => {
-      setSpinner(null);
-      // Handle Errors here.
       const errorCode = error.code;
       const errorMessage = error.message;
-      // The email of the user's account used.
       const email = error.customData.email;
-      // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
-      console.log({ errorCode, errorMessage, email, credential });
-      // ...
+      console.error({ errorCode, errorMessage, email, credential });
     })
     .finally(() => {
       setSpinner(false);

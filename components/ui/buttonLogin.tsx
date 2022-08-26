@@ -17,11 +17,15 @@ const ButtonLogin = (props: { onClick: () => void }) => {
       justify-center items-center px-2
       cursor-pointer
       p-2
-
-      
       "
       >
-        <Image src={"/icons/Google_icon.png"} height={50} width={50} />
+        <Image
+          src={"/icons/Google_icon.png"}
+          height={50}
+          width={50}
+          priority={true}
+          alt="Google icon"
+        />
         <h5 className="cursor-pointer">Sign in with Google</h5>
       </div>
     </button>

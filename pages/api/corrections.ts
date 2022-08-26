@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import redis from "../../components/database/redis";
+import redis from "../../components/storage/redis";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (req.method === "GET") {

@@ -3,21 +3,14 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import CorrectMyWriting from "../components/correctMyWriting";
-import {
-  googleSignIn,
-  handleRedirectResult,
-} from "../components/auth/firebase";
+import { googleSignIn } from "../components/storage/firebase";
 import { UserCredential } from "firebase/auth";
 import ButtonLogin from "../components/ui/buttonLogin";
 import Spinner from "../components/ui/spinner";
 
 const Home: NextPage = () => {
-  const [token, setToken] = useState<String>();
   const [userCredential, setUserCredential] = useState<UserCredential>();
   const [spinner, setSpinner] = useState<boolean | null>(null);
-  useEffect(() => {
-    handleRedirectResult(setToken, setUserCredential, setSpinner);
-  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -30,7 +23,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        {token ? (
+        {userCredential ? (
           <CorrectMyWriting />
         ) : spinner ? (
           <Spinner />
@@ -40,7 +33,9 @@ const Home: NextPage = () => {
               Welcome to{" "}
               <b className="animate-pulse duration-75">correct my writing!</b>
             </h1>
-            <ButtonLogin onClick={googleSignIn} />
+            <ButtonLogin
+              onClick={() => googleSignIn(setUserCredential, setSpinner)}
+            />
           </>
         )}
       </main>
