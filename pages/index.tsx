@@ -8,6 +8,8 @@ import {
   handleRedirectResult,
 } from "../components/auth/firebase";
 import { UserCredential } from "firebase/auth";
+import ButtonLogin from "../components/ui/buttonLogin";
+import Spinner from "../components/ui/spinner";
 
 const Home: NextPage = () => {
   const [token, setToken] = useState<String>();
@@ -31,14 +33,14 @@ const Home: NextPage = () => {
         {token ? (
           <CorrectMyWriting />
         ) : spinner ? (
-          <div className="text-8xl text-white">SPINNER</div>
+          <Spinner />
         ) : (
           <>
-            <button onClick={googleSignIn}>Login with Google</button>
             <h1 className={styles.title}>
               Welcome to{" "}
               <b className="animate-pulse duration-75">correct my writing!</b>
             </h1>
+            <ButtonLogin onClick={googleSignIn} />
           </>
         )}
       </main>

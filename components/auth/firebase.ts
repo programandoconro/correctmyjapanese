@@ -39,7 +39,6 @@ export const handleRedirectResult = (
   setSpinner: (s: boolean | null) => void
 ) => {
   setSpinner(true);
-  console.log(true);
   getRedirectResult(auth)
     .then((result) => {
       if (result) {
@@ -47,9 +46,7 @@ export const handleRedirectResult = (
         const credential = GoogleAuthProvider.credentialFromResult(result);
         const token = credential?.accessToken;
         token && setToken(token);
-        console.log(credential);
         setUser(result);
-        console.log(false);
       }
 
       // The signed-in user info.
@@ -68,6 +65,5 @@ export const handleRedirectResult = (
     })
     .finally(() => {
       setSpinner(false);
-      console.log(false);
     });
 };
