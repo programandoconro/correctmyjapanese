@@ -18,7 +18,8 @@ const Login = () => {
   return (
     <div className="flex flex-col justify-center align-middle items-center min-h-screen">
       <h1 className="lg:text-8xl md:text-6xl sm:text-4xl text-2xl flex flex-col  w-full justify-center items-center align-middle">
-        Welcome <b className="animate-pulse duration-75">correct my writing!</b>
+        Welcome to{" "}
+        <b className="animate-pulse duration-75">correct my writing!</b>
       </h1>
       <ButtonLogin onClick={handleLogin} />
     </div>
