@@ -1,10 +1,14 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
-import { useEffect } from "react";
+import store from "../components/redux/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {}, []);
-  return <Component {...pageProps} />;
+  return (
+    <Provider store={store}>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
 
 export default MyApp;

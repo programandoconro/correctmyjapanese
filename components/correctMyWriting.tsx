@@ -22,23 +22,26 @@ const CorrectMyWriting = () => {
     getPersistedData(CONSTANTS.CORRECTIONS);
   }, []);
   return (
-    <div className="grid gap-10 pt-10 xl:px-40">
-      <InputArea
-        title={CONSTANTS.MANUSCRIPTS}
-        input={studentInput}
-        setInput={setStudentInput}
-      />
-      <InputArea
-        title={CONSTANTS.CORRECTIONS}
-        input={teacherInput}
-        setInput={setTeacherInput}
-      />
-      <Corrections
-        changes={findDifferences({
-          learnerSentence: studentInput,
-          teacherCorrection: teacherInput,
-        })}
-      />
+    <div className="grid w-full h-screen">
+      <Header />
+      <div className="grid gap-10 pt-10 xl:px-40">
+        <InputArea
+          title={CONSTANTS.MANUSCRIPTS}
+          input={studentInput}
+          setInput={setStudentInput}
+        />
+        <InputArea
+          title={CONSTANTS.CORRECTIONS}
+          input={teacherInput}
+          setInput={setTeacherInput}
+        />
+        <Corrections
+          changes={findDifferences({
+            learnerSentence: studentInput,
+            teacherCorrection: teacherInput,
+          })}
+        />
+      </div>
     </div>
   );
 };

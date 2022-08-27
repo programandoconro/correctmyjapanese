@@ -4,13 +4,11 @@ import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
-  signInWithRedirect,
-  getRedirectResult,
-  User,
-  IdTokenResult,
   UserCredential,
   signOut,
 } from "firebase/auth";
+import { spinnerOn, spinnerOff } from "../redux/spinnerSlice";
+import { AnyAction, Dispatch } from "redux";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -32,9 +30,10 @@ auth.useDeviceLanguage();
 
 export const googleSignIn = (
   setUser: (u: UserCredential) => void,
-  setSpinner: (s: boolean | null) => void
+  startSpinner: () => void,
+  stopSpinner: () => void
 ) => {
-  setSpinner(true);
+  startSpinner();
   signInWithPopup(auth, provider)
     .then((result) => {
       setUser(result);
@@ -47,7 +46,7 @@ export const googleSignIn = (
       console.error({ errorCode, errorMessage, email, credential });
     })
     .finally(() => {
-      setSpinner(false);
+      stopSpinner();
     });
 };
 
