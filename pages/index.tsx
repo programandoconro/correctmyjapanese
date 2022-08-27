@@ -1,15 +1,12 @@
-import { useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import CorrectMyWriting from "../components/correctMyWriting";
-import { UserCredential } from "firebase/auth";
 import Spinner from "../components/ui/spinner";
 import { useSelector } from "react-redux";
 import Login from "../components/login";
 
 const Home: NextPage = () => {
-  const [userCredential, setUserCredential] = useState<UserCredential>();
   const auth = useSelector(
     (state: { auth: { isLogin: boolean } }) => state.auth.isLogin
   );
