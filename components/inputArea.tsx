@@ -21,7 +21,7 @@ const InputArea = (props: {
     <>
       <h5 className="text-xl">{name}</h5>
       <textarea
-        className="bg-gray-300 text-black font-bold text-2xl min-h-[200px] px-4 max-w-[1000px]"
+        className="bg-gray-300 text-black font-bold text-2xl min-h-[200px] px-4"
         value={input}
         onChange={handleInputChange}
         placeholder={name}

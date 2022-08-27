@@ -3,6 +3,7 @@ import InputArea from "./inputArea";
 import CONSTANTS from "../utils/constants";
 import Corrections from "./corrections";
 import findDifferences from "./findDifferences";
+import Header from "./header";
 
 const CorrectMyWriting = () => {
   const [studentInput, setStudentInput] = useState<string>("");
@@ -21,7 +22,7 @@ const CorrectMyWriting = () => {
     getPersistedData(CONSTANTS.CORRECTIONS);
   }, []);
   return (
-    <div className="grid gap-10 pt-10 w-screen xl:w-[1200px] px-10">
+    <div className="grid gap-10 pt-10 xl:px-40">
       <InputArea
         title={CONSTANTS.MANUSCRIPTS}
         input={studentInput}

@@ -9,6 +9,7 @@ import {
   User,
   IdTokenResult,
   UserCredential,
+  signOut,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -47,5 +48,15 @@ export const googleSignIn = (
     })
     .finally(() => {
       setSpinner(false);
+    });
+};
+
+export const signOutGoogle = async () => {
+  signOut(auth)
+    .then(() => {
+      // Sign-out successful.
+    })
+    .catch((error) => {
+      console.error(error);
     });
 };
