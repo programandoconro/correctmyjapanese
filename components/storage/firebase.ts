@@ -31,12 +31,14 @@ auth.useDeviceLanguage();
 export const googleSignIn = (
   setUser: (u: UserCredential) => void,
   startSpinner: () => void,
-  stopSpinner: () => void
+  stopSpinner: () => void,
+  login: () => void
 ) => {
   startSpinner();
   signInWithPopup(auth, provider)
     .then((result) => {
       setUser(result);
+      login();
     })
     .catch((error) => {
       const errorCode = error.code;

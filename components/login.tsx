@@ -11,9 +11,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const stopSpinner = () => dispatch(spinnerOff());
   const startSpinner = () => dispatch(spinnerOn());
+
   const handleLogin = () => {
-    googleSignIn(setUserCredential, startSpinner, stopSpinner);
-    dispatch(logIn());
+    const setIsLogin = () => dispatch(logIn());
+    googleSignIn(setUserCredential, startSpinner, stopSpinner, setIsLogin);
   };
   return (
     <div className="flex flex-col justify-center align-middle items-center min-h-screen">
