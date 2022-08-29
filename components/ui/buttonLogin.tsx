@@ -9,7 +9,7 @@ const ButtonLogin = (props: { onClick: () => void }) => {
       rounded-lg
       transition
       delay-100
-     my-4 hover:bg-blue-500"
+      my-10 hover:bg-blue-500"
       onClick={onClick}
     >
       <div
