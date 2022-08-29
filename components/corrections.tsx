@@ -3,8 +3,8 @@ import { Change } from "diff";
 const Corrections = (props: { changes: Change[] }) => {
   const { changes } = props;
   return (
-    <code className="text-8xl bg-gray-600">
-      <h2 className="text-4xl">Corrections:</h2>
+    <code className="text-8xl bg-gray-800 mb-10">
+      <h2 className="text-4xl">Correction:</h2>
       <div className="flex">
         {changes.map((change: Change, key) => {
           if (!change.added && !change.removed) {

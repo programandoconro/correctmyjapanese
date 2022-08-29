@@ -1,14 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { UserCredential } from "firebase/auth";
 
-type UserType = {
+export type UserType = {
+  name: string;
+  uid: string;
+};
+type AuthType = {
   isLogin: boolean;
-  userName: string;
+  user: UserType;
 };
 
-const initialState: UserType = {
+const initialState: AuthType = {
   isLogin: false,
-  userName: "",
+  user: {
+    name: "",
+    uid: "",
+  },
 };
 
 export const authSlice = createSlice({
@@ -22,12 +29,12 @@ export const authSlice = createSlice({
       state.isLogin = false;
     },
 
-    userName: (state, action) => {
-      state.userName = action.payload;
+    setUserCredentials: (state, action) => {
+      state.user = action.payload;
     },
   },
 });
 
-export const { logIn, logOut, userName } = authSlice.actions;
+export const { logIn, logOut, setUserCredentials } = authSlice.actions;
 
 export default authSlice;

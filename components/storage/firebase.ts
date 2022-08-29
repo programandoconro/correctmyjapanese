@@ -7,7 +7,12 @@ import {
   signOut,
 } from "firebase/auth";
 import store from "../redux/store";
-import { logIn, userName } from "../redux/authSlice";
+import {
+  logIn,
+  logOut,
+  setUserCredentials,
+  UserType,
+} from "../redux/authSlice";
 import { spinnerOff, spinnerOn } from "../redux/spinnerSlice";
 
 const firebaseConfig = {
@@ -33,10 +38,14 @@ export const googleSignIn = async () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // console.log(await result.user.getIdTokenResult());
-      if (result.user.displayName) {
-        store.dispatch(userName(result.user.displayName));
+      const name = result?.user?.displayName;
+      const uid = result?.user?.uid;
+      if (name && uid) {
+        store.dispatch(setUserCredentials({ name, uid }));
+        store.dispatch(logIn());
+      } else {
+        alert("An error ocurred, no name or uid was found");
       }
-      store.dispatch(logIn());
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -53,7 +62,8 @@ export const googleSignIn = async () => {
 export const signOutGoogle = async () => {
   signOut(auth)
     .then(() => {
-      // Sign-out successful.
+      store.dispatch(logOut());
+      store.dispatch(setUserCredentials({ name: "", uid: "" }));
     })
     .catch((error) => {});
 };

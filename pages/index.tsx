@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         {spinner ? <Spinner /> : auth ? <CorrectMyWriting /> : <Login />}
       </main>
 
-      <footer className={styles.footer}></footer>
+      <footer></footer>
     </div>
   );
 };

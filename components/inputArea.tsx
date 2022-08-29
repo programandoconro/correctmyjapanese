@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import CONSTANTS from "../utils/constants";
 
 const InputArea = (props: {
@@ -6,13 +7,18 @@ const InputArea = (props: {
   setInput: (s: string) => void;
 }) => {
   const { title, input, setInput } = props;
+  const uid = useSelector(
+    (state: { auth: { user: { uid: string } } }) => state.auth.user.uid
+  );
+
   const handleInputChange = async (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
     setInput(event.target.value);
+
     await fetch(`/api/${title}`, {
-      method: "POST",
-      body: event.target.value,
+      method: "PUT",
+      body: JSON.stringify({ uid, payload: event.target.value }),
     });
   };
   const name =

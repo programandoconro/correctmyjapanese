@@ -4,13 +4,20 @@ import CONSTANTS from "../utils/constants";
 import Corrections from "./corrections";
 import findDifferences from "./findDifferences";
 import Header from "./header";
+import { useSelector } from "react-redux";
 
 const CorrectMyWriting = () => {
   const [studentInput, setStudentInput] = useState<string>("");
   const [teacherInput, setTeacherInput] = useState<string>("");
+  const uid = useSelector(
+    (state: { auth: { user: { uid: string } } }) => state.auth.user.uid
+  );
   useEffect(() => {
     const getPersistedData = async (route: "manuscripts" | "corrections") => {
-      const response = await fetch(`/api/${route}`, { method: "GET" });
+      const response = await fetch(`/api/${route}`, {
+        method: "POST",
+        body: JSON.stringify({ uid }),
+      });
       const data = await response.json();
       if (route === CONSTANTS.MANUSCRIPTS) {
         setStudentInput(data.manuscripts);
