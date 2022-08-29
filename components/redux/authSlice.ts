@@ -1,11 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { UserCredential } from "firebase/auth";
+
+type UserType = {
+  isLogin: boolean;
+  user: UserCredential | null;
+};
+
+const initialState: UserType = {
+  isLogin: false,
+  user: null,
+};
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    isLogin: false,
-    spinner: false,
-  },
+  initialState: initialState,
   reducers: {
     logIn: (state) => {
       state.isLogin = true;
@@ -13,15 +21,13 @@ export const authSlice = createSlice({
     logOut: (state) => {
       state.isLogin = false;
     },
-    setSpinnerOff: (state) => {
-      state.spinner = false;
-    },
-    setSpinnerOn: (state) => {
-      state.spinner = true;
+
+    user: (state) => {
+      state.user = null;
     },
   },
 });
 
-export const { logIn, logOut } = authSlice.actions;
+export const { logIn, logOut, user } = authSlice.actions;
 
 export default authSlice;

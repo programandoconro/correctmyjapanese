@@ -7,8 +7,8 @@ import {
   UserCredential,
   signOut,
 } from "firebase/auth";
-import { spinnerOn, spinnerOff } from "../redux/spinnerSlice";
-import { AnyAction, Dispatch } from "redux";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import store from "../redux/store";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -24,19 +24,22 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 //const analytics = getAnalytics(app);
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
+export const provider = new GoogleAuthProvider();
+export const auth = getAuth();
 auth.useDeviceLanguage();
 
-export const googleSignIn = (
-  setUser: (u: UserCredential) => void,
-  startSpinner: () => void,
-  stopSpinner: () => void,
-  login: () => void
-) => {
+export const googleSignIn = async (props: {
+  setUser: (u: UserCredential) => void;
+  startSpinner: () => void;
+  stopSpinner: () => void;
+  login: () => void;
+}) => {
+  const { setUser, startSpinner, stopSpinner, login } = props;
   startSpinner();
   signInWithPopup(auth, provider)
-    .then((result) => {
+    .then(async (result) => {
+      // console.log(result.user.displayName);
+      // console.log(await result.user.getIdTokenResult());
       setUser(result);
       login();
     })
@@ -57,7 +60,5 @@ export const signOutGoogle = async () => {
     .then(() => {
       // Sign-out successful.
     })
-    .catch((error) => {
-      console.error(error);
-    });
+    .catch((error) => {});
 };
