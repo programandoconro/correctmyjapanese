@@ -22,7 +22,7 @@ const CorrectMyWriting = () => {
     getPersistedData(CONSTANTS.CORRECTIONS);
   }, []);
   return (
-    <div className="grid w-full h-screen">
+    <div className="grid h-screen">
       <Header />
       <div className="grid gap-10 pt-10 xl:px-40">
         <InputArea

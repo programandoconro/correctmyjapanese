@@ -14,7 +14,7 @@ const Home: NextPage = () => {
     (state: { spinner: { on: boolean } }) => state.spinner.on
   );
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Correct my Japanese</title>
         <meta

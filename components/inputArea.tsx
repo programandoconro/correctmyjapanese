@@ -19,7 +19,6 @@ const InputArea = (props: {
     title === CONSTANTS.MANUSCRIPTS ? "Student's input" : "Sensei's input";
   return (
     <>
-      <h5 className="text-xl">{name}</h5>
       <textarea
         className="bg-gray-300 text-black font-bold text-2xl min-h-[200px] px-4"
         value={input}

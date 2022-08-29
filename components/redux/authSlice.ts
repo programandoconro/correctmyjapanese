@@ -3,12 +3,12 @@ import { UserCredential } from "firebase/auth";
 
 type UserType = {
   isLogin: boolean;
-  user: UserCredential | null;
+  userName: string;
 };
 
 const initialState: UserType = {
   isLogin: false,
-  user: null,
+  userName: "",
 };
 
 export const authSlice = createSlice({
@@ -22,12 +22,12 @@ export const authSlice = createSlice({
       state.isLogin = false;
     },
 
-    user: (state) => {
-      state.user = null;
+    userName: (state, action) => {
+      state.userName = action.payload;
     },
   },
 });
 
-export const { logIn, logOut, user } = authSlice.actions;
+export const { logIn, logOut, userName } = authSlice.actions;
 
 export default authSlice;

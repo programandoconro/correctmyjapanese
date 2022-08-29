@@ -1,14 +1,14 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+//import { getAnalytics } from "firebase/analytics";
 import {
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
-  UserCredential,
   signOut,
 } from "firebase/auth";
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import store from "../redux/store";
+import { logIn, userName } from "../redux/authSlice";
+import { spinnerOff, spinnerOn } from "../redux/spinnerSlice";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -28,20 +28,15 @@ export const provider = new GoogleAuthProvider();
 export const auth = getAuth();
 auth.useDeviceLanguage();
 
-export const googleSignIn = async (props: {
-  setUser: (u: UserCredential) => void;
-  startSpinner: () => void;
-  stopSpinner: () => void;
-  login: () => void;
-}) => {
-  const { setUser, startSpinner, stopSpinner, login } = props;
-  startSpinner();
+export const googleSignIn = async () => {
+  store.dispatch(spinnerOn());
   signInWithPopup(auth, provider)
-    .then(async (result) => {
-      // console.log(result.user.displayName);
+    .then((result) => {
       // console.log(await result.user.getIdTokenResult());
-      setUser(result);
-      login();
+      if (result.user.displayName) {
+        store.dispatch(userName(result.user.displayName));
+      }
+      store.dispatch(logIn());
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -51,7 +46,7 @@ export const googleSignIn = async (props: {
       console.error({ errorCode, errorMessage, email, credential });
     })
     .finally(() => {
-      stopSpinner();
+      store.dispatch(spinnerOff());
     });
 };
 

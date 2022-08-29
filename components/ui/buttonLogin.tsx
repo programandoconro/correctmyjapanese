@@ -4,19 +4,20 @@ const ButtonLogin = (props: { onClick: () => void }) => {
   const { onClick } = props;
   return (
     <button
-      className="bg-blue-600 text-white
+      className="bg-blue-700 text-white
       font-bold
       rounded-lg
       transition
       delay-100
-      my-10 hover:bg-blue-500"
+      my-10 hover:bg-blue-600"
       onClick={onClick}
     >
       <div
         className="flex align-middle 
       justify-center items-center px-2
       cursor-pointer
-      p-2
+      p-2 gap-1
+      select-none
       "
       >
         <Image

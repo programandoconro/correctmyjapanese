@@ -11,7 +11,7 @@ const ButtonLogout = () => {
   return (
     <button
       onClick={handleLogout}
-      className="bg-gray-400 px-1 rounded hover:bg-gray-300 transition delay-75 shadow-2xl"
+      className="bg-gray-600 px-1 rounded hover:bg-gray-400 transition delay-75 shadow-2xl"
     >
       <h5>LOGOUT</h5>
     </button>
