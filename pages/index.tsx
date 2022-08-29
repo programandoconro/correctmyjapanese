@@ -16,10 +16,10 @@ const Home: NextPage = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Correct my writing</title>
+        <title>Correct my Japanese</title>
         <meta
           name="description"
-          content="A place to improve your writing skills in any language"
+          content="A place to improve your writing Japanese language skills"
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
