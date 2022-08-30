@@ -12,9 +12,9 @@ const Header = () => {
       items-center align-baseline"
     >
       <div className="flex gap-1 ml-4 items-start align-baseline select-none">
-        <h5 className="text-white font-extrabold">User:</h5>
+        <div className="text-white font-extrabold">User:</div>
 
-        <h5 className="text-white font-extralight italic ">{user}</h5>
+        <div className="text-white font-extralight italic ">{user}</div>
       </div>
       <div className="flex justify-end mr-4 select-none">
         <ButtonLogout />

@@ -1,10 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import CorrectMyWriting from "../components/correctMyWriting";
 import Spinner from "../components/ui/spinner";
 import { useSelector } from "react-redux";
 import Login from "../components/login";
+import Dashboard from "../components/dashboard";
 
 const Home: NextPage = () => {
   const auth = useSelector(
@@ -24,9 +23,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        {spinner ? <Spinner /> : auth ? <CorrectMyWriting /> : <Login />}
-      </main>
+      <main>{spinner ? <Spinner /> : auth ? <Dashboard /> : <Login />}</main>
 
       <footer></footer>
     </div>
