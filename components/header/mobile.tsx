@@ -63,7 +63,7 @@ export default function MobileHeader() {
     return <></>;
   };
   return (
-    <nav className="mx-2">
+    <nav className=" bg-gray-800">
       <div>
         <Hamburger handleClick={handleClick} open={open} />
       </div>

@@ -53,14 +53,20 @@ const Dashboard = () => {
             size: "default",
             nextIcon: () => {
               return (
-                <div className="border-gray-400 flex justify-center items-center h-8 select-none px-1 border rounded">
+                <div
+                  className="border-gray-800 flex justify-center items-center
+                 h-8 select-none px-1 border rounded"
+                >
                   <RightOutlined />
                 </div>
               );
             },
             prevIcon: () => {
               return (
-                <div className="border-gray-400 align-middle justify-center items-center flex h-8  select-none px-1 border rounded">
+                <div
+                  className="border-gray-800 align-middle justify-center
+                 items-center flex h-8  select-none px-1 border rounded"
+                >
                   <LeftOutlined />
                 </div>
               );

@@ -27,7 +27,9 @@ const InputArea = (props: {
   return (
     <>
       <textarea
-        className="bg-gray-800 border border-gray-800 hover:border hover:border-gray-500  text-white text-2xl min-h-[200px] px-4"
+        className="bg-gray-800 border border-gray-800 hover:border
+         hover:border-gray-500  text-white text-2xl
+         px-4 min-h-[400px]"
         value={input}
         onChange={handleInputChange}
         placeholder={name}

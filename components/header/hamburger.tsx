@@ -60,7 +60,7 @@ export default function HamburgerMenu(props: {
     );
   };
   return (
-    <div className="grid grid-cols-12 h-16 items-center">
+    <div className="grid grid-cols-12 h-16 mx-2 items-center">
       <div className="col-span-8 relative"></div>
       <div className="flex justify-end items-center gap-4 col-span-4">
         {!open ? <Hamburger /> : <CloseButton />}
