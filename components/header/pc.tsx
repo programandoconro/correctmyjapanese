@@ -1,11 +1,9 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
 import ButtonLogout from "../ui/buttonLogout";
+import { useAppSelector } from "../../redux/hooks";
 
 const Header = () => {
-  const user = useSelector(
-    (state: { auth: { user: { name: string } } }) => state.auth.user.name
-  );
+  const user = useAppSelector((state) => state.auth.user.name);
 
   return (
     <header

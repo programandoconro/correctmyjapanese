@@ -11,6 +11,11 @@ import spinnerSlice from "./spinnerSlice";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // defaults to localStorage for web
 import authSlice from "./authSlice";
+import {
+  correctionSlice,
+  differencesSlice,
+  manuscriptSlice,
+} from "./correctionSlice";
 
 const persistConfig = {
   key: "root",
@@ -26,6 +31,9 @@ const store = configureStore({
   reducer: {
     auth: persistedReducer,
     spinner: spinnerSlice.reducer,
+    correction: correctionSlice.reducer,
+    manuscript: manuscriptSlice.reducer,
+    differences: differencesSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -39,3 +47,4 @@ export const persistor = persistStore(store);
 
 export default store;
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import store from "../../components/redux/store";
-import redis from "../../components/storage/redis";
+import redis from "../../storage/redis";
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { uid, payload } = JSON.parse(req.body);

@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
 import { useLayoutEffect, useState } from "react";
 
 export default function HamburgerMenu(props: {

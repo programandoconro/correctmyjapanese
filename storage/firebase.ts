@@ -7,12 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 import store from "../redux/store";
-import {
-  logIn,
-  logOut,
-  setUserCredentials,
-  UserType,
-} from "../redux/authSlice";
+import { logIn, logOut, setUserCredentials } from "../redux/authSlice";
 import { spinnerOff, spinnerOn } from "../redux/spinnerSlice";
 
 const firebaseConfig = {

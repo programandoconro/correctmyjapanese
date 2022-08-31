@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import CONSTANTS from "../utils/constants";
+import CONSTANTS from "../../utils/constants";
 
 const InputArea = (props: {
   title?: string;
@@ -23,10 +23,11 @@ const InputArea = (props: {
   };
   const name =
     title === CONSTANTS.MANUSCRIPTS ? "Student's input" : "Sensei's input";
+
   return (
     <>
       <textarea
-        className="bg-gray-300  text-black font-bold text-2xl min-h-[200px] px-4"
+        className="bg-gray-800 border border-gray-800 hover:border hover:border-gray-500  text-white text-2xl min-h-[200px] px-4"
         value={input}
         onChange={handleInputChange}
         placeholder={name}

@@ -1,4 +1,4 @@
-import { googleSignIn } from "./storage/firebase";
+import { googleSignIn } from "../storage/firebase";
 import ButtonLogin from "./ui/buttonLogin";
 
 const Login = () => {

@@ -1,4 +1,4 @@
-import { signOutGoogle } from "../storage/firebase";
+import { signOutGoogle } from "../../storage/firebase";
 import { useRouter } from "next/router";
 import { LogoutOutlined } from "@ant-design/icons";
 

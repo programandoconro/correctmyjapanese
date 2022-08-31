@@ -1,17 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Spinner from "../components/ui/spinner";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../redux/hooks";
 import Login from "../components/login";
 import Dashboard from "../components/dashboard";
 
 const Home: NextPage = () => {
-  const auth = useSelector(
-    (state: { auth: { isLogin: boolean } }) => state.auth.isLogin
-  );
-  const spinner = useSelector(
-    (state: { spinner: { on: boolean } }) => state.spinner.on
-  );
+  const auth = useAppSelector((state) => state.auth.isLogin);
+  const spinner = useAppSelector((state) => state.spinner.on);
   return (
     <div>
       <Head>

@@ -1,5 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { UserCredential } from "firebase/auth";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export type UserType = {
   name: string;
@@ -29,7 +28,7 @@ export const authSlice = createSlice({
       state.isLogin = false;
     },
 
-    setUserCredentials: (state, action) => {
+    setUserCredentials: (state: AuthType, action: PayloadAction<UserType>) => {
       state.user = action.payload;
     },
   },

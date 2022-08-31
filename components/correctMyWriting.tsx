@@ -1,17 +1,42 @@
-import { useEffect, useState } from "react";
-import InputArea from "./inputArea";
+import { useEffect } from "react";
+import InputArea from "./ui/inputArea";
 import CONSTANTS from "../utils/constants";
 import Corrections from "./corrections";
 import findDifferences from "./findDifferences";
 import Header from "./header";
-import { useSelector } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../redux/hooks";
+import {
+  DataStudent,
+  DataTeacher,
+  setCorrection,
+  setManuscript,
+} from "../redux/correctionSlice";
 
 const CorrectMyWriting = () => {
-  const [studentInput, setStudentInput] = useState<string>("");
-  const [teacherInput, setTeacherInput] = useState<string>("");
-  const uid = useSelector(
-    (state: { auth: { user: { uid: string } } }) => state.auth.user.uid
-  );
+  const uid = useAppSelector((state) => state.auth.user.uid);
+  const studentData = useAppSelector((state) => state.manuscript.dataStudent);
+  const teacherData = useAppSelector((state) => state.correction.dataTeacher);
+  const user = useAppSelector((state) => state.auth.user);
+
+  const dispatch = useAppDispatch();
+  const handleStudentInput = (e: string) => {
+    const manuscript: DataStudent = {
+      student: user.name,
+      studentUid: user.uid,
+      corrected: false,
+      manuscript: e,
+    };
+    dispatch(setManuscript(manuscript));
+  };
+  const handleTeacherInput = (e: string) => {
+    const correction: DataTeacher = {
+      teacher: user.name,
+      teacherUid: user.uid,
+      correction: e,
+    };
+    dispatch(setCorrection(correction));
+  };
+
   useEffect(() => {
     const getPersistedData = async (route: "manuscripts" | "corrections") => {
       const response = await fetch(`/api/${route}`, {
@@ -20,9 +45,9 @@ const CorrectMyWriting = () => {
       });
       const data = await response.json();
       if (route === CONSTANTS.MANUSCRIPTS) {
-        setStudentInput(data.manuscripts);
+        handleStudentInput(data.manuscripts);
       } else if (route === CONSTANTS.CORRECTIONS) {
-        setTeacherInput(data.corrections);
+        handleTeacherInput(data.corrections);
       }
     };
     getPersistedData(CONSTANTS.MANUSCRIPTS);
@@ -34,18 +59,18 @@ const CorrectMyWriting = () => {
       <div className="grid gap-10 pt-10 xl:px-40">
         <InputArea
           title={CONSTANTS.MANUSCRIPTS}
-          input={studentInput}
-          setInput={setStudentInput}
+          input={studentData.manuscript}
+          setInput={handleStudentInput}
         />
         <InputArea
           title={CONSTANTS.CORRECTIONS}
-          input={teacherInput}
-          setInput={setTeacherInput}
+          input={teacherData.correction}
+          setInput={handleTeacherInput}
         />
         <Corrections
           changes={findDifferences({
-            learnerSentence: studentInput,
-            teacherCorrection: teacherInput,
+            learnerSentence: studentData.manuscript,
+            teacherCorrection: teacherData.correction,
           })}
         />
       </div>

@@ -1,8 +1,8 @@
 import React, { useState, useRef, useLayoutEffect, useContext } from "react";
 import Link from "next/link";
-import Hamburguer from "./hamburger";
+import Hamburger from "./hamburger";
 import ButtonLogout from "../ui/buttonLogout";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../redux/hooks";
 
 export default function MobileHeader() {
   const [open, setOpen] = useState(false);
@@ -10,9 +10,7 @@ export default function MobileHeader() {
     setOpen(!open);
   };
 
-  const user = useSelector(
-    (state: { auth: { user: { name: string } } }) => state.auth.user.name
-  );
+  const user = useAppSelector((state) => state.auth.user.name);
   const menuRef = useRef<HTMLDivElement>(null);
   const closeOnClickOut = (e: MouseEvent) => {
     if (
@@ -67,7 +65,7 @@ export default function MobileHeader() {
   return (
     <nav className="mx-2">
       <div>
-        <Hamburguer handleClick={handleClick} open={open} />
+        <Hamburger handleClick={handleClick} open={open} />
       </div>
       <div ref={menuRef} className="flex justify-end">
         <Menu />
