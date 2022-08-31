@@ -1,42 +1,8 @@
 import { FileAddOutlined } from "@ant-design/icons";
-import { Button, Table } from "antd";
 import Link from "next/link";
 import Header from "./header";
 
 const Dashboard = () => {
-  const dataSource = [
-    {
-      key: "1",
-      author: "Mike",
-      title: "私の生活",
-      corrected: "true",
-    },
-    {
-      key: "2",
-      author: "John",
-      title: "犬のストーリー",
-      corrected: "false",
-    },
-  ];
-
-  const columns = [
-    {
-      title: "Author",
-      dataIndex: "author",
-      key: "author",
-    },
-    {
-      title: "Title",
-      dataIndex: "title",
-      key: "title",
-    },
-    {
-      title: "Corrected",
-      dataIndex: "corrected",
-      key: "corrected",
-    },
-  ];
-
   return (
     <div className="">
       <Header />
@@ -57,7 +23,6 @@ const Dashboard = () => {
             </button>
           </Link>
         </div>
-        <Table dataSource={dataSource} columns={columns} />
       </div>
     </div>
   );
