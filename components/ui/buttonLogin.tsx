@@ -27,7 +27,7 @@ const ButtonLogin = (props: { onClick: () => void }) => {
           priority={true}
           alt="Google icon"
         />
-        <h5 className="cursor-pointer">Sign in with Google</h5>
+        <div className="cursor-pointer">Sign in with Google</div>
       </div>
     </button>
   );

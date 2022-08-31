@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useSelector } from "react-redux";
-import ButtonLogout from "./ui/buttonLogout";
+import ButtonLogout from "../ui/buttonLogout";
 
 const Header = () => {
   const user = useSelector(
