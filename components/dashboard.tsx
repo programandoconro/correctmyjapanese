@@ -20,10 +20,10 @@ const Dashboard = () => {
       
       grid-cols-10 border-2 border-gray-500"
       >
-        <div className="bg-gray-800 border-r border-gray-500 font-bold px-4 col-span-3 h-10 items-center grid select-none">
+        <div className="bg-gray-800 border-gray-500 font-bold px-4 col-span-3 h-10 items-center grid select-none">
           Author
         </div>
-        <div className="bg-gray-800 font-bold border-r border-gray-500 px-4 col-span-6 h-10 items-center grid select-none">
+        <div className="bg-gray-800 font-bold border-gray-500 px-4 col-span-6 h-10 items-center grid select-none">
           Manuscript
         </div>
         <div className="bg-gray-800 font-bold px-4 justify-end h-10 col-span-1 select-none items-center grid">
