@@ -1,5 +1,7 @@
 {
-    "cSpell.words": [
-        "persistor"
-    ]
+  "cSpell.words": [
+    "lpush",
+    "lrange",
+    "persistor"
+  ]
 }

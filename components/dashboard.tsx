@@ -1,39 +1,36 @@
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Table } from "antd";
+import { useEffect, useState } from "react";
+import { Differences } from "../redux/correctionSlice";
+import {
+  getPersistedDashboardData,
+  getPersistedDifferences,
+} from "../storage/persisted";
+import { DashboardData } from "../utils/types";
 import Header from "./header";
 import ButtonNew from "./ui/buttonNew";
 
 const Dashboard = () => {
-  const dataSource = [
-    {
-      key: "1",
-      name: "Mike",
-      age: 32,
-      address: "10 Downing Street",
-    },
-    {
-      key: "2",
-      name: "John",
-      age: 42,
-      address: "10 Downing Street",
-    },
-  ];
+  const [dataSource, setDataSource] = useState<DashboardData[]>();
+  useEffect(() => {
+    getPersistedDashboardData({ setDataSource });
+  }, []);
 
   const columns = [
     {
-      title: "Name",
+      title: "Author",
       dataIndex: "name",
       key: "name",
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Corrected",
+      dataIndex: "corrected",
+      key: "corrected",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Manuscript",
+      dataIndex: "manuscript",
+      key: "manuscript",
     },
   ];
   return (

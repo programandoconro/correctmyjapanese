@@ -38,7 +38,7 @@ const initialCorrection: Correction = {
   },
 };
 export interface Differences extends Manuscript, Correction {
-  differences: Change[];
+  differences?: Change[];
 }
 const initialDifferences: Differences = {
   ...initialManuscript,

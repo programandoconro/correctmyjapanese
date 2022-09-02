@@ -2,10 +2,18 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Header from "../components/header";
 import InputArea from "../components/ui/inputArea";
-import { DataStudent, setManuscript } from "../redux/correctionSlice";
+import {
+  DataStudent,
+  Differences,
+  setManuscript,
+} from "../redux/correctionSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import CONSTANTS from "../utils/constants";
-import { getPersistedData } from "../utils/getPersistedData";
+import {
+  clearPersistedManuscript,
+  getPersistedData,
+  setPersistedDifferences,
+} from "../storage/persisted";
 
 const Student = () => {
   const studentData = useAppSelector((state) => state.manuscript.dataStudent);
@@ -29,7 +37,19 @@ const Student = () => {
   }, []);
 
   const router = useRouter();
-  const handleFinish = () => {
+  const handleFinish = async () => {
+    const differences: Differences = {
+      dataTeacher: {
+        teacher: "",
+        teacherUid: "",
+        correction: "",
+      },
+      dataStudent: {
+        ...studentData,
+      },
+    };
+    await setPersistedDifferences({ data: differences });
+    await clearPersistedManuscript();
     router.push("/");
   };
 
@@ -58,3 +78,10 @@ const Student = () => {
 };
 
 export default Student;
+function setPersistedInputContent(arg0: {
+  route: any;
+  event: Event | undefined;
+  setInput: any;
+}) {
+  throw new Error("Function not implemented.");
+}

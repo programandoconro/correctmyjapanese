@@ -1,25 +1,17 @@
-import { useSelector } from "react-redux";
+import { setPersistedInputContent } from "../../storage/persisted";
 import CONSTANTS from "../../utils/constants";
 
 const InputArea = (props: {
-  title?: string;
+  title: "manuscripts" | "corrections";
   input: string;
   setInput: (s: string) => void;
 }) => {
   const { title, input, setInput } = props;
-  const uid = useSelector(
-    (state: { auth: { user: { uid: string } } }) => state.auth.user.uid
-  );
 
   const handleInputChange = async (
     event: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
-    setInput(event.target.value);
-
-    await fetch(`/api/${title}`, {
-      method: "PUT",
-      body: JSON.stringify({ uid, payload: event.target.value }),
-    });
+    setPersistedInputContent({ route: title, event, setInput });
   };
   const name =
     title === CONSTANTS.MANUSCRIPTS ? "Student's input" : "Sensei's input";
