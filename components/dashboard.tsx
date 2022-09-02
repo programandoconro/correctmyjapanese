@@ -1,5 +1,3 @@
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import { Table } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { getPersistedDashboardData } from "../storage/persisted";
@@ -13,37 +11,6 @@ const Dashboard = () => {
     getPersistedDashboardData({ setDataSource });
   }, []);
 
-  const columns = [
-    {
-      title: "Author",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Manuscript",
-      dataIndex: "manuscript",
-      key: "manuscript",
-      render: (manuscript: string) => (
-        <div
-          className="overflow-hidden text-ellipsis
-          whitespace-nowrap w-40 sm:w-full cursor-pointer
-          decoration hover:underline
-          "
-          onClick={() => {
-            console.log(manuscript);
-            router.push("/teacher");
-          }}
-        >
-          {manuscript}
-        </div>
-      ),
-    },
-    {
-      title: "Corrected",
-      dataIndex: "corrected",
-      key: "corrected",
-    },
-  ];
   const router = useRouter();
   const MyTable = () => {
     return (
@@ -51,23 +18,38 @@ const Dashboard = () => {
         className="grid 
       mx-4 justify-center  items-center
       
-      grid-cols-10 border border-white"
+      grid-cols-10 border-2 border-gray-500"
       >
-        <div className="bg-gray-800 font-bold px-4 col-span-3">Author</div>
-        <div className="bg-gray-800 font-bold px-4 col-span-6">Manuscript</div>
-        <div className="bg-gray-800 font-bold px-4 justify-end flex col-span-1">
+        <div className="bg-gray-800 border-r border-gray-500 font-bold px-4 col-span-3 h-10 items-center grid select-none">
+          Author
+        </div>
+        <div className="bg-gray-800 font-bold border-r border-gray-500 px-4 col-span-6 h-10 items-center grid select-none">
+          Manuscript
+        </div>
+        <div className="bg-gray-800 font-bold px-4 justify-end h-10 col-span-1 select-none items-center grid">
           Corrected
         </div>
         {dataSource?.map((data, key) => {
           return (
             <React.Fragment key={key}>
-              <div className="grid px-4 col-span-3">{data.name}</div>
+              <div
+                className="grid
+              hover:bg-gray-700
+              transition
+               h-10 select-none
+              items-center
+              cursor-pointer
+               px-4 col-span-3"
+              >
+                {data.name}
+              </div>
               <div
                 className=" h-10 pt-2 
+              transition
               overflow-hidden
               text-ellipsis whitespace-nowrap
               px-4 col-span-6 cursor-pointer
-              decoration hover:underline
+              hover:bg-gray-700
               "
                 onClick={() => {
                   console.log(data.manuscript);
@@ -76,7 +58,7 @@ const Dashboard = () => {
               >
                 {data.manuscript}
               </div>
-              <div className="grid px-4 justify-end col-span-1">
+              <div className="grid px-4 h-10 justify-end items-center col-span-1 select-none">
                 {data.corrected}
               </div>
             </React.Fragment>
@@ -90,38 +72,6 @@ const Dashboard = () => {
       <Header />
       <ButtonNew />
       <MyTable />
-      <div className="mx-4">
-        <Table
-          dataSource={dataSource}
-          columns={columns}
-          size={"small"}
-          style={{}}
-          pagination={{
-            style: {
-              alignContent: "center",
-              alignItems: "center",
-              display: "flex",
-            },
-            size: "default",
-            nextIcon: () => (
-              <div
-                className="border-gray-800 flex justify-center items-center
-                 h-8 select-none px-1 border rounded"
-              >
-                <RightOutlined />
-              </div>
-            ),
-            prevIcon: () => (
-              <div
-                className="border-gray-800 align-middle justify-center
-                 items-center flex h-8  select-none px-1 border rounded"
-              >
-                <LeftOutlined />
-              </div>
-            ),
-          }}
-        />
-      </div>
     </div>
   );
 };
