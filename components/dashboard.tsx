@@ -1,9 +1,8 @@
-import { LeftOutlined, RightOutlined } from "@ant-design/icons";
 import { Table } from "antd";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { Differences, setCorrection } from "../redux/correctionSlice";
+import { setCorrection } from "../redux/correctionSlice";
 import { useAppSelector } from "../redux/hooks";
 import { getPersistedDashboardData } from "../storage/persisted";
 import { DashboardData } from "../utils/types";
@@ -95,23 +94,6 @@ const Dashboard = () => {
               display: "flex",
             },
             size: "small",
-            nextIcon: () => (
-              <div
-                className="border-gray-800 flex justify-center items-center
-               h-8 select-none px-1 border rounded"
-              >
-                {" "}
-                <RightOutlined />
-              </div>
-            ),
-            prevIcon: () => (
-              <div
-                className="border-gray-800 align-middle justify-center
-             items-center flex h-8  select-none px-1 border rounded"
-              >
-                <LeftOutlined />
-              </div>
-            ),
           }}
         />
       </div>

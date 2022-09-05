@@ -4,5 +4,6 @@
 
 .ant-pagination-item-active{
   border: none !important;
+  padding-top: 2px;
 
 }

@@ -1,5 +1,3 @@
-import { Change } from "diff";
-import { updateEmail } from "firebase/auth";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import Corrections from "../components/corrections";

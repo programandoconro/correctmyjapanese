@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect, useContext } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import Link from "next/link";
 import Hamburger from "./hamburger";
 import ButtonLogout from "../ui/buttonLogout";
