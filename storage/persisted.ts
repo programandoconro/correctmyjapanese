@@ -87,6 +87,7 @@ export const getPersistedDashboardData = async (props: {
         corrected: d.dataStudent.corrected.toString(),
         manuscript: d.dataStudent.manuscript,
         studentUid: d.dataStudent.studentUid,
+        correction: d.dataTeacher.correction,
       };
     })
   );

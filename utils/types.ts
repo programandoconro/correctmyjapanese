@@ -3,5 +3,6 @@ export type DashboardData = {
   name: string;
   corrected: string;
   manuscript: string;
+  correction?: string;
   studentUid: string;
 };
