@@ -1,5 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Differences, setCorrection } from "../redux/correctionSlice";
+import { useAppSelector } from "../redux/hooks";
 import { getPersistedDashboardData } from "../storage/persisted";
 import { DashboardData } from "../utils/types";
 import Header from "./header";
@@ -13,6 +16,21 @@ const Dashboard = () => {
 
   const router = useRouter();
   const MyTable = () => {
+    const dispatch = useDispatch();
+    const user = useAppSelector((state) => state.auth.user);
+    const handleClickItem = (manuscript: DashboardData, key: number) => {
+      router.push("/teacher");
+      dispatch(
+        setCorrection({
+          manuscriptToCorrect: manuscript.manuscript,
+          itemKey: key,
+          teacher: user.name,
+          teacherUid: user.uid,
+          studentName: manuscript.name,
+          studentToCorrectUid: manuscript.studentUid,
+        })
+      );
+    };
     return (
       <div
         className="grid 
@@ -51,10 +69,7 @@ const Dashboard = () => {
               px-4 col-span-6 cursor-pointer
               hover:bg-gray-700
               "
-                onClick={() => {
-                  console.log(data.manuscript);
-                  router.push("/teacher");
-                }}
+                onClick={() => handleClickItem(data, key)}
               >
                 {data.manuscript}
               </div>

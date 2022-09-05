@@ -21,7 +21,7 @@ export const getPersistedData = async (props: {
   }
 };
 
-const key = `differences/${store.getState().auth.user.uid}`;
+const key = `differences`;
 export const getPersistedDifferences = async (): Promise<Differences[]> => {
   const response = await fetch(`/api/${CONSTANTS.DIFFERENCES}`, {
     method: "POST",
@@ -63,6 +63,17 @@ export const clearPersistedManuscript = async () => {
     body: JSON.stringify({ uid, payload: "" }),
   });
 };
+export const updatePersistedDashboard = async (props: {
+  key: number;
+  uid: string;
+  payload: Differences;
+}) => {
+  const { uid, key, payload } = props;
+  await fetch(`/api/${CONSTANTS.DIFFERENCES}`, {
+    method: "PATCH",
+    body: JSON.stringify({ uid, payload, index: key }),
+  });
+};
 export const getPersistedDashboardData = async (props: {
   setDataSource: (d: DashboardData[]) => void;
 }) => {
@@ -75,6 +86,7 @@ export const getPersistedDashboardData = async (props: {
         name: d.dataStudent.student,
         corrected: d.dataStudent.corrected.toString(),
         manuscript: d.dataStudent.manuscript,
+        studentUid: d.dataStudent.studentUid,
       };
     })
   );

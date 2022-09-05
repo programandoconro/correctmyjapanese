@@ -43,6 +43,10 @@ const Student = () => {
         teacher: "",
         teacherUid: "",
         correction: "",
+        manuscriptToCorrect: "",
+        itemKey: 0,
+        studentName: studentData.student,
+        studentToCorrectUid: studentData.studentUid,
       },
       dataStudent: {
         ...studentData,

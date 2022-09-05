@@ -3,4 +3,5 @@ export type DashboardData = {
   name: string;
   corrected: string;
   manuscript: string;
+  studentUid: string;
 };

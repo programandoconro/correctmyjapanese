@@ -24,7 +24,11 @@ const initialManuscript: Manuscript = {
 export type DataTeacher = {
   teacherUid: string;
   teacher: string;
-  correction: string;
+  correction?: string;
+  manuscriptToCorrect: string;
+  itemKey: number;
+  studentName: string;
+  studentToCorrectUid: string;
 };
 
 export interface Correction {
@@ -35,6 +39,10 @@ const initialCorrection: Correction = {
     teacher: "",
     teacherUid: "",
     correction: "",
+    manuscriptToCorrect: "",
+    itemKey: 0,
+    studentName: "",
+    studentToCorrectUid: "",
   },
 };
 export interface Differences extends Manuscript, Correction {
