@@ -1,13 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-export type UserType = {
-  name: string;
-  uid: string;
-};
-type AuthType = {
-  isLogin: boolean;
-  user: UserType;
-};
+import { AuthType, UserType } from "../utils/types";
 
 const initialState: AuthType = {
   isLogin: false,

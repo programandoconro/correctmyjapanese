@@ -1,16 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Change } from "diff";
-
-export type DataStudent = {
-  studentUid: string;
-  student: string;
-  corrected: boolean;
-  manuscript: string;
-};
-
-export interface Manuscript {
-  dataStudent: DataStudent;
-}
+import {
+  Manuscript,
+  Correction,
+  Differences,
+  DataStudent,
+  DataTeacher,
+} from "../utils/types";
 
 const initialManuscript: Manuscript = {
   dataStudent: {
@@ -21,19 +17,6 @@ const initialManuscript: Manuscript = {
   },
 };
 
-export type DataTeacher = {
-  teacherUid: string;
-  teacher: string;
-  correction?: string;
-  manuscriptToCorrect: string;
-  itemKey: number;
-  studentName: string;
-  studentToCorrectUid: string;
-};
-
-export interface Correction {
-  dataTeacher: DataTeacher;
-}
 const initialCorrection: Correction = {
   dataTeacher: {
     teacher: "",
@@ -45,9 +28,6 @@ const initialCorrection: Correction = {
     studentToCorrectUid: "",
   },
 };
-export interface Differences extends Manuscript, Correction {
-  differences?: Change[];
-}
 const initialDifferences: Differences = {
   ...initialManuscript,
   ...initialCorrection,

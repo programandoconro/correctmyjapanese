@@ -2,11 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Header from "../components/header";
 import InputArea from "../components/ui/inputArea";
-import {
-  DataStudent,
-  Differences,
-  setManuscript,
-} from "../redux/correctionSlice";
+import { setManuscript } from "../redux/correctionSlice";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import CONSTANTS from "../utils/constants";
 import {
@@ -14,6 +10,7 @@ import {
   getPersistedData,
   setPersistedDifferences,
 } from "../storage/persisted";
+import { DataStudent, Differences } from "../utils/types";
 
 const Student = () => {
   const studentData = useAppSelector((state) => state.manuscript.dataStudent);

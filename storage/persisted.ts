@@ -1,7 +1,6 @@
-import { Differences } from "../redux/correctionSlice";
 import store from "../redux/store";
 import CONSTANTS from "../utils/constants";
-import { DashboardData } from "../utils/types";
+import { DashboardData, Differences } from "../utils/types";
 
 export const getPersistedData = async (props: {
   route: "manuscripts" | "corrections";
@@ -21,11 +20,10 @@ export const getPersistedData = async (props: {
   }
 };
 
-const key = `differences`;
 export const getPersistedDifferences = async (): Promise<Differences[]> => {
   const response = await fetch(`/api/${CONSTANTS.DIFFERENCES}`, {
     method: "POST",
-    body: JSON.stringify({ uid: key }),
+    body: JSON.stringify({ uid: CONSTANTS.DIFFERENCES }),
   });
   const data = await response.json();
   const d: Differences[] = data.differences.map((diff: string) => {
@@ -37,7 +35,7 @@ export const setPersistedDifferences = async (props: { data: Differences }) => {
   const { data } = props;
   await fetch(`/api/${CONSTANTS.DIFFERENCES}`, {
     method: "PUT",
-    body: JSON.stringify({ uid: key, payload: data }),
+    body: JSON.stringify({ uid: CONSTANTS.DIFFERENCES, payload: data }),
   });
 };
 
