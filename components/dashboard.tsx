@@ -18,21 +18,26 @@ const Dashboard = () => {
   }, []);
   const handleClickManuscript = (manuscript: DashboardData, key: number) => {
     router.push("/teacher");
-    dispatch(
-      setCorrection({
-        manuscriptToCorrect: manuscript.manuscript,
-        itemKey: key,
-        teacher: user.name,
-        teacherUid: user.uid,
-        studentName: manuscript.name,
-        studentToCorrectUid: manuscript.studentUid,
-      })
-    );
+    setDataForThePageToNavigate(manuscript, key);
   };
   const handleClickUser = () => {
     router.push("/user");
   };
-  const handleClickCorrection = () => {
+  const setDataForThePageToNavigate = (data: DashboardData, key: number) => {
+    dispatch(
+      setCorrection({
+        manuscriptToCorrect: data.manuscript,
+        itemKey: key,
+        teacher: user.name,
+        teacherUid: user.uid,
+        studentName: data.name,
+        studentToCorrectUid: data.studentUid,
+        correction: data.correction,
+      })
+    );
+  };
+  const handleClickCorrection = (manuscript: DashboardData, key: number) => {
+    setDataForThePageToNavigate(manuscript, key);
     router.push("/my-correction");
   };
   const columns = [
@@ -69,7 +74,7 @@ const Dashboard = () => {
           decoration hover:underline
           "
           onClick={() => {
-            handleClickCorrection();
+            handleClickCorrection(data, Number(data.key));
           }}
         >
           {data.correction}

@@ -18,7 +18,7 @@ const Header = () => {
           </div>
         </Link>
         <Link href={"/"}>
-          <div className="cursor-pointer hover:bg-gray-600 rounded px-2 w-24 delay-75 transition">
+          <div className="cursor-pointer hover:bg-gray-600 rounded px-2 w-24 flex justify-center delay-75 transition">
             Dashboard
           </div>
         </Link>

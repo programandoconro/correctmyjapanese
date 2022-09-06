@@ -4,8 +4,8 @@ const Corrections = (props: { changes: Change[] }) => {
   const { changes } = props;
   return (
     <code className="grid gap-4 divide-y text-2xl bg-gray-800 mb-10 overflow-auto">
-      <h2 className="text-4xl">Correction:</h2>
-      <div className="flex">
+      <h2 className="text-4xl px-4 pt-2">Corrections:</h2>
+      <div className="flex p-4">
         {changes.map((change: Change, key) => {
           if (!change.added && !change.removed) {
             return <p key={key}>{change.value}</p>;
@@ -22,7 +22,7 @@ const Corrections = (props: { changes: Change[] }) => {
           }
         })}
       </div>
-      <div className="flex">
+      <div className="flex p-4">
         {changes.map((change: Change, key) => {
           if (!change.added && !change.removed) {
             return <p key={key}>{change.value}</p>;
