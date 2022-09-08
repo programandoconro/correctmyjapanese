@@ -1,4 +1,5 @@
 import { Table } from "antd";
+import Column from "antd/lib/table/Column";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -20,9 +21,6 @@ const Dashboard = () => {
     router.push("/teacher");
     setDataForThePageToNavigate(manuscript, key);
   };
-  const handleClickUser = () => {
-    router.push("/user");
-  };
   const setDataForThePageToNavigate = (data: DashboardData, key: number) => {
     dispatch(
       setCorrection({
@@ -40,48 +38,6 @@ const Dashboard = () => {
     setDataForThePageToNavigate(manuscript, key);
     router.push("/my-correction");
   };
-  const columns = [
-    {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-    },
-    {
-      title: "Manuscript",
-      dataIndex: "manuscript",
-      key: "manuscript",
-      render: (_: string, data: DashboardData) => (
-        <div
-          className="text-ellipsis
-          cursor-pointer whitespace-pre-wrap
-          decoration hover:underline
-          "
-          onClick={() => handleClickManuscript(data, Number(data.key))}
-        >
-          {data.manuscript}
-        </div>
-      ),
-    },
-    {
-      title: "Correction",
-      dataIndex: "correction",
-      key: "correction",
-      render: (_: string, data: DashboardData) => (
-        <div
-          className="overflow-hidden text-ellipsis
-          sm:w-full cursor-pointer
-          decoration hover:underline
-          "
-          onClick={() => {
-            handleClickCorrection(data, Number(data.key));
-          }}
-        >
-          {data.correction}
-        </div>
-      ),
-    },
-  ];
-
   const router = useRouter();
   return (
     <div className="gap-4 grid ">
@@ -90,7 +46,6 @@ const Dashboard = () => {
       <div className="px-4">
         <Table
           dataSource={dataSource}
-          columns={columns}
           pagination={{
             style: {
               alignContent: "center",
@@ -99,7 +54,43 @@ const Dashboard = () => {
             },
             size: "small",
           }}
-        />
+        >
+          <Column title="Name" key="name" dataIndex="name" />
+          <Column
+            title="Manuscript"
+            dataIndex="manuscript"
+            key="manuscript"
+            render={(_: string, data: DashboardData) => (
+              <div
+                className="overflow-hidden text-ellipsis
+                whitespace-nowrap sm:w-full cursor-pointer
+                decoration hover:underline"
+                onClick={() => handleClickManuscript(data, Number(data.key))}
+              >
+                {data.manuscript}
+              </div>
+            )}
+            ellipsis={true}
+          />
+          <Column
+            title="Correction"
+            ellipsis={true}
+            dataIndex="correction"
+            key="correction"
+            render={(_: string, data: DashboardData) => (
+              <div
+                className="overflow-hidden text-ellipsis
+                whitespace-nowrap sm:w-full cursor-pointer
+                decoration hover:underline"
+                onClick={() => {
+                  handleClickCorrection(data, Number(data.key));
+                }}
+              >
+                {data.correction}
+              </div>
+            )}
+          />
+        </Table>
       </div>
     </div>
   );
