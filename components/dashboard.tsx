@@ -45,7 +45,6 @@ const Dashboard = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
-      render: (name: string) => <div onClick={handleClickUser}>{name}</div>,
     },
     {
       title: "Manuscript",
@@ -53,8 +52,8 @@ const Dashboard = () => {
       key: "manuscript",
       render: (_: string, data: DashboardData) => (
         <div
-          className="overflow-hidden text-ellipsis
-          whitespace-nowrap sm:w-full cursor-pointer
+          className="text-ellipsis
+          cursor-pointer whitespace-pre-wrap
           decoration hover:underline
           "
           onClick={() => handleClickManuscript(data, Number(data.key))}
@@ -70,7 +69,7 @@ const Dashboard = () => {
       render: (_: string, data: DashboardData) => (
         <div
           className="overflow-hidden text-ellipsis
-          whitespace-nowrap sm:w-full cursor-pointer
+          sm:w-full cursor-pointer
           decoration hover:underline
           "
           onClick={() => {
