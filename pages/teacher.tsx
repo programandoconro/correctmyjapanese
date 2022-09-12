@@ -11,9 +11,7 @@ const Teacher = () => {
   const manuscriptData = useAppSelector(
     (state) => state.correction.dataTeacher
   );
-  const [input, setInput] = useState<string>(
-    manuscriptData.manuscriptToCorrect || ""
-  );
+  const [input, setInput] = useState<string>("");
   const router = useRouter();
   const handleFinish = async () => {
     await updatePersistedDashboard({
@@ -47,7 +45,9 @@ const Teacher = () => {
           <p className="text-2xl">Teacher Corrections</p>
         </div>
         <p>Student manuscript</p>
-        <p>{manuscriptData.manuscriptToCorrect}</p>
+        <p className="text-2xl font-semibold bg-gray-900">
+          {manuscriptData.manuscriptToCorrect}
+        </p>
         <p className="">Teacher Corrections</p>
         <InputArea title="corrections" input={input} setInput={setInput} />
         <div className="flex w-full items-end mt-4 pr-4 xl:pr-20 justify-end mb-10">
