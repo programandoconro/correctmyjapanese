@@ -11,7 +11,9 @@ const Teacher = () => {
   const manuscriptData = useAppSelector(
     (state) => state.correction.dataTeacher
   );
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>(
+    manuscriptData.manuscriptToCorrect
+  );
   const router = useRouter();
   const handleFinish = async () => {
     await updatePersistedDashboard({
