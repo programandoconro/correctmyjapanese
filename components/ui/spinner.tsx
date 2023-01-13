@@ -1,8 +1,6 @@
-import styles from "../../styles/Home.module.css";
-
 const Spinner = () => {
   return (
-    <div className={styles.main}>
+    <div>
       <div className="flex gap-4 justify-center items-center">
         <div
           className="

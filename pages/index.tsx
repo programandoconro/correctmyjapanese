@@ -21,7 +21,7 @@ const Home: NextPage = () => {
 
       <main>{spinner ? <Spinner /> : auth ? <Dashboard /> : <Login />}</main>
 
-      <footer></footer>
+      <footer>Correct my Japanese</footer>
     </div>
   );
 };
