@@ -4,10 +4,18 @@ import Spinner from "../components/ui/spinner";
 import { useAppSelector } from "../redux/hooks";
 import Login from "../components/login";
 import Dashboard from "../components/dashboard";
+import { logAnalyticsEvent, startGoogleAnalytics } from "../storage/firebase";
+import { useEffect } from "react";
 
 const Home: NextPage = () => {
   const auth = useAppSelector((state) => state.auth.isLogin);
   const spinner = useAppSelector((state) => state.spinner.on);
+
+  useEffect(() => {
+    startGoogleAnalytics();
+    logAnalyticsEvent();
+  }, []);
+
   return (
     <div>
       <Head>

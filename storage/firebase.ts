@@ -6,6 +6,11 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import {
+  initializeAnalytics,
+  getAnalytics,
+  logEvent,
+} from "firebase/analytics";
 import store from "../redux/store";
 import { logIn, logOut, setUserCredentials } from "../redux/authSlice";
 import { spinnerOff, spinnerOn } from "../redux/spinnerSlice";
@@ -22,6 +27,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+export const startGoogleAnalytics = () => initializeAnalytics(app);
+export const logAnalyticsEvent = () => {
+  const analytics = getAnalytics(app);
+  logEvent(analytics, "main_page");
+};
 //const analytics = getAnalytics(app);
 
 export const provider = new GoogleAuthProvider();
