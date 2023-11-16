@@ -43,9 +43,11 @@ export const googleSignIn = async () => {
   signInWithPopup(auth, provider)
     .then((result) => {
       // console.log(await result.user.getIdTokenResult());
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+
       const name = result?.user?.displayName;
       const uid = result?.user?.uid;
-      if (name && uid) {
+      if (name && uid && credential) {
         store.dispatch(setUserCredentials({ name, uid }));
         store.dispatch(logIn());
       } else {
