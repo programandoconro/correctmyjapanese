@@ -52,9 +52,11 @@ export const googleSignIn = async () => {
         store.dispatch(logIn());
       } else {
         alert("An error ocurred, no name or uid was found");
+        store.dispatch(logOut());
       }
     })
     .catch((error) => {
+      store.dispatch(logOut());
       const errorCode = error.code;
       const errorMessage = error.message;
       const email = error.customData.email;
