@@ -79,10 +79,3 @@ const Student = () => {
 };
 
 export default Student;
-function setPersistedInputContent(arg0: {
-  route: any;
-  event: Event | undefined;
-  setInput: any;
-}) {
-  throw new Error("Function not implemented.");
-}
