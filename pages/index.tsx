@@ -28,8 +28,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main>{spinner ? <Spinner /> : auth ? <Dashboard /> : <Login />}</main>
-
-      <footer>Correct my Japanese</footer>
     </div>
   );
 };
