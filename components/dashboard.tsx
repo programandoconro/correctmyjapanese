@@ -10,6 +10,8 @@ import Header from "./header";
 import ButtonNew from "./ui/buttonNew";
 import Spinner from "./ui/spinner";
 import { DashboardData } from "../utils/types";
+import Instructions from "./ui/instructions";
+import Title from "antd/lib/typography/Title";
 
 const Dashboard = () => {
   const [dataSource, setDataSource] = useState<DashboardData[]>();
@@ -58,6 +60,7 @@ const Dashboard = () => {
   return (
     <div className="gap-4 grid ">
       <Header />
+      <Title className="text-center">Correct my Japanese</Title>
       <ButtonNew />
       <div className="px-4">
         <Table
@@ -111,6 +114,7 @@ const Dashboard = () => {
             )}
           />
         </Table>
+        <Instructions />
       </div>
     </div>
   );
