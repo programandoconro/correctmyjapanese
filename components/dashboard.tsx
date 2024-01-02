@@ -9,14 +9,23 @@ import { getPersistedDashboardData } from "../storage/persisted";
 import { DashboardData } from "../utils/types";
 import Header from "./header";
 import ButtonNew from "./ui/buttonNew";
+import Spinner from "./ui/spinner";
 
 const Dashboard = () => {
   const [dataSource, setDataSource] = useState<DashboardData[]>();
   const dispatch = useDispatch();
   const user = useAppSelector((state) => state.auth.user);
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     getPersistedDashboardData({ setDataSource });
   }, []);
+  useEffect(() => {
+    if (!dataSource) {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [dataSource, dispatch]);
   const handleClickManuscript = (manuscript: DashboardData, key: number) => {
     router.push("/teacher");
     setDataForThePageToNavigate(manuscript, key);
@@ -46,6 +55,10 @@ const Dashboard = () => {
       <div className="px-4">
         <Table
           dataSource={dataSource}
+          loading={{
+            indicator: <Spinner />,
+            spinning: loading,
+          }}
           pagination={{
             style: {
               alignContent: "center",
