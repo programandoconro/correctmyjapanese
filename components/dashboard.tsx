@@ -1,24 +1,28 @@
-import { Table } from "antd";
-import Column from "antd/lib/table/Column";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setCorrection } from "../redux/correctionSlice";
 import { useAppSelector } from "../redux/hooks";
 import { getPersistedDashboardData } from "../storage/persisted";
-import { DashboardData } from "../utils/types";
+import { Table } from "antd";
+import Column from "antd/lib/table/Column";
 import Header from "./header";
 import ButtonNew from "./ui/buttonNew";
 import Spinner from "./ui/spinner";
+import { DashboardData } from "../utils/types";
 
 const Dashboard = () => {
   const [dataSource, setDataSource] = useState<DashboardData[]>();
-  const dispatch = useDispatch();
-  const user = useAppSelector((state) => state.auth.user);
   const [loading, setLoading] = useState(false);
+  const user = useAppSelector((state) => state.auth.user);
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     getPersistedDashboardData({ setDataSource });
   }, []);
+
   useEffect(() => {
     if (!dataSource) {
       setLoading(true);
@@ -26,10 +30,12 @@ const Dashboard = () => {
       setLoading(false);
     }
   }, [dataSource, dispatch]);
+
   const handleClickManuscript = (manuscript: DashboardData, key: number) => {
     router.push("/teacher");
     setDataForThePageToNavigate(manuscript, key);
   };
+
   const setDataForThePageToNavigate = (data: DashboardData, key: number) => {
     dispatch(
       setCorrection({
@@ -43,11 +49,12 @@ const Dashboard = () => {
       })
     );
   };
+
   const handleClickCorrection = (manuscript: DashboardData, key: number) => {
     setDataForThePageToNavigate(manuscript, key);
     router.push("/my-correction");
   };
-  const router = useRouter();
+
   return (
     <div className="gap-4 grid ">
       <Header />
