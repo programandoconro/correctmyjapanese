@@ -53,6 +53,16 @@ export default function MobileHeader() {
               </div>
             </Link>
           </div>
+          <div>
+            <Link href={"#instructions"}>
+              <div
+                onClick={handleClick}
+                className="p-3  select-none hover:bg-slate-600 cursor-pointer w-full"
+              >
+                <div className="h-full text-lg">Instructions </div>
+              </div>
+            </Link>
+          </div>
           <hr className="mt-1 mb-1" />
           <div className="px-4 pt-2 flex justify-end h-10">
             <ButtonLogout />

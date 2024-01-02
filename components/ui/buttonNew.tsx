@@ -15,7 +15,7 @@ const ButtonNew = () => {
            select-none text-gray-200
            "
           >
-            <FileAddOutlined />
+            <FileAddOutlined rev={"new manuscript"} />
             New
           </button>
         </Link>

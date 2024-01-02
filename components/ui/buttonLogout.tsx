@@ -15,7 +15,7 @@ const ButtonLogout = () => {
       transition delay-75"
     >
       LOGOUT
-      <LogoutOutlined />
+      <LogoutOutlined rev={"logout"} />
     </button>
   );
 };
